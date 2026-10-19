@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sou Missionário</title>
+  <link rel="icon" href="https://nyc3.digitaloceanspaces.com/ds-static-storage/paradoar.org/pantokrator/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Sans é fonte proprietária: se você tiver a licença, use @font-face no CSS. Aqui carregamos a Google Sans Flex como apoio. -->
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sou-missionario.css">
+</head>
+<body>
+
+<!-- fundo animado -->
+<div class="bg" aria-hidden="true">
+  <span></span><span></span><span></span>
+  <i style="--x:8%;--d:15s;--s:-2s"></i><i style="--x:24%;--d:19s;--s:-9s"></i><i style="--x:41%;--d:13s;--s:-5s"></i>
+  <i style="--x:58%;--d:21s;--s:-12s"></i><i style="--x:76%;--d:16s;--s:-7s"></i><i style="--x:91%;--d:18s;--s:-1s"></i>
+</div>
+<div class="glow" aria-hidden="true"></div>
+
+<!-- tela inicial -->
+<section class="intro" id="intro">
+  <img class="logo" src="./logo-ptk.png" alt="Comunidade Católica Pantokrator">
+  <button class="start" id="start" type="button">Clique aqui para se tornar missionário do Amor Poderoso</button>
+</section>
+
+<main class="app" id="app" hidden>
+
+  <header class="top">
+    <img class="logo" src="./logo-ptk.png" alt="Comunidade Católica Pantokrator">
+    <h1 id="titulo">Quanto você quer doar?</h1>
+  </header>
+
+  <nav class="steps" id="steps" aria-label="Progresso da doação">
+    <button type="button" data-go="0"><i></i>Valor</button>
+    <button type="button" data-go="1"><i></i>Missão</button>
+    <button type="button" data-go="2"><i></i>Dados</button>
+    <button type="button" data-go="3"><i></i>Pagamento</button>
+  </nav>
+
+  <p class="coach" id="coach" aria-live="polite"><span class="dot"></span><span id="coach-txt"></span></p>
+
+  <form id="form" novalidate>
+
+    <!-- Passo 1: valor -->
+    <section class="step show">
+      <h2 class="q">Como será sua contribuição?</h2>
+      <div class="switch">
+        <button type="button" data-r="0" data-tip="Única: você doa apenas uma vez, sem renovação automática.">Única</button>
+        <input type="checkbox" id="mensal" checked role="switch" aria-label="Contribuição mensal">
+        <label class="track" for="mensal"></label>
+        <button type="button" data-r="1" class="heart" data-tip="Mensal: uma doação frequente, renovada todo mês no dia que você escolher.">Mensal</button>
+      </div>
+      <div class="amount">
+        <span>R$</span>
+        <input id="valor" name="valor" type="number" inputmode="numeric" min="20" step="1" value="30" placeholder="30" required aria-label="Valor da doação">
+      </div>
+      <div class="chips">
+        <button type="button" data-v="30"><small>R$</small>30</button>
+        <button type="button" data-v="50"><small>R$</small>50</button>
+        <button type="button" data-v="100"><small>R$</small>100</button>
+      </div>
+      <div class="field dia" id="dia-box">
+        <label>Dia da cobrança mensal</label>
+        <div class="pills">
+          <label><input type="radio" name="dia_cobranca" value="5" checked>Dia 5</label>
+          <label><input type="radio" name="dia_cobranca" value="10">Dia 10</label>
+          <label><input type="radio" name="dia_cobranca" value="15">Dia 15</label>
+        </div>
+      </div>
+      <p class="hint" id="hint">Doe outro valor digitando acima. Mínimo de R$ 20.</p>
+    </section>
+
+    <!-- Passo 2: missão -->
+    <section class="step">
+      <h2 class="q">Para qual missão será sua doação?</h2>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="Tag" value="Sede Fundacional - Campinas" required>Sede Fundacional - Campinas</label>
+        <label class="opt"><input type="radio" name="Tag" value="Missão Santos">Missão Santos</label>
+        <label class="opt"><input type="radio" name="Tag" value="Missão Guaíra">Missão Guaíra</label>
+        <label class="opt"><input type="radio" name="Tag" value="Missão Jaguariúna">Missão Jaguariúna</label>
+        <label class="opt"><input type="radio" name="Tag" value="Missão São José dos Campos">Missão São José dos Campos</label>
+      </div>
+    </section>
+
+    <!-- Passo 3: dados pessoais -->
+    <section class="step">
+      <h2 class="q">Dados pessoais</h2>
+      <div class="grid">
+        <div class="field span2"><label for="nome">Nome completo</label><input id="nome" name="nome" autocomplete="name" required></div>
+        <div class="field"><label for="doc">CPF / CNPJ</label><input id="doc" name="documento" inputmode="numeric" maxlength="18" required></div>
+        <div class="field"><label for="nasc">Data de nascimento</label><input id="nasc" name="nascimento" type="date" autocomplete="bday" required></div>
+        <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="cel">Celular</label><input id="cel" name="celular" type="tel" inputmode="tel" maxlength="15" autocomplete="tel" required></div>
+        <div class="field span2">
+          <label>Gênero</label>
+          <div class="pills">
+            <label><input type="radio" name="genero" value="m" required>Masculino</label>
+            <label><input type="radio" name="genero" value="f">Feminino</label>
+            <label><input type="radio" name="genero" value="o">Outro</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Passo 4: pagamento -->
+    <section class="step">
+      <h2 class="q">Dados de cobrança</h2>
+      <div class="seg" id="seg" role="tablist">
+        <button type="button" role="tab" data-pay="creditcard" aria-selected="true">Cartão</button>
+        <button type="button" role="tab" data-pay="pix" aria-selected="false">Pix</button>
+        <button type="button" role="tab" data-pay="boleto" aria-selected="false">Boleto</button>
+      </div>
+
+      <div class="pay" data-panel="creditcard">
+        <div class="grid">
+          <div class="field span2"><label for="c-nome">Nome impresso no cartão</label><input id="c-nome" name="cartao_nome" autocomplete="cc-name" required></div>
+          <div class="field"><label for="c-num">Número do cartão</label><input id="c-num" name="cartao_numero" inputmode="numeric" maxlength="19" autocomplete="cc-number" required></div>
+          <div class="field"><label for="c-doc">CPF / CNPJ titular</label><input id="c-doc" name="cartao_documento" inputmode="numeric" maxlength="18" required></div>
+          <div class="field"><label for="c-mes">Mês de exp</label><select id="c-mes" name="cartao_mes" required></select></div>
+          <div class="field"><label for="c-ano">Ano de exp</label><select id="c-ano" name="cartao_ano" required></select></div>
+          <div class="field span2"><label for="c-cvv">CVV</label><input id="c-cvv" name="cartao_cvv" inputmode="numeric" maxlength="4" autocomplete="cc-csc" required></div>
+        </div>
+      </div>
+      <div class="pay" data-panel="pix" hidden><p class="note">Será gerado o <b>QR Code</b> após concluir o preenchimento e clicar em <b>Doar</b>.</p></div>
+      <div class="pay" data-panel="boleto" hidden><p class="note">O <b>Boleto</b> será gerado após clicar em <b>Doar</b>.</p></div>
+
+      <p class="note warn">Atenção: Em sua doação para esta instituição aparecerá no pix ou no boleto o intermediador Colmeiaio Tecnologias e Instituição de Pagamentos Ltda, que é a empresa responsável por garantir o processamento seguro de suas doações. Note no descritivo do pagamento que o Beneficiário Final continua sendo nossa instituição.</p>
+
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="noticias"><span>Concordo em receber notícias e atualizações via E-mail, WhatsApp ou SMS.</span></label>
+        <label class="check"><input type="checkbox" name="termos" required><span>Eu li e aceito os <a href="#">Termos e Condições.</a></span></label>
+        <label class="check"><input type="checkbox" name="autorizo" required><span>Autorizo a efetivação das minhas doações junto à instituição financeira, conforme as opções por mim assinaladas acima.</span></label>
+      </div>
+    </section>
+
+    <p class="err" id="err" role="alert"></p>
+
+    <div class="nav">
+      <button class="back" id="back" type="button" aria-label="Voltar" hidden>&#8592;</button>
+      <p class="sum">Você está doando<strong id="resumo">R$ 30 por mês</strong></p>
+      <button class="cta" id="next" type="submit">Continuar</button>
+    </div>
+  </form>
+
+  <div id="done" class="done" hidden tabindex="-1">
+    <svg class="ok-ico" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 15-17"/></svg>
+    <h2>Doação efetuada com sucesso</h2>
+    <dl>
+      <div><dt>Valor da doação</dt><dd id="d-valor"></dd></div>
+      <div><dt>Tipo de pagamento</dt><dd id="d-tipo"></dd></div>
+    </dl>
+    <p>Sua doação significa muito para nós e para todos que se beneficiam do nosso trabalho.</p>
+    <p>Graças à sua generosidade, podemos continuar nossa missão de transformar vidas e fazer a diferença na comunidade.</p>
+    <p>Cada contribuição nos aproxima ainda mais dos nossos objetivos, e somos imensamente gratos por você ter decidido nos apoiar.</p>
+    <p>Além de ajudar a manter nossos projetos ativos, sua doação demonstra confiança no nosso trabalho e nos motiva a seguir em frente com ainda mais determinação.</p>
+    <p>Tenha certeza de que seu gesto fará um impacto positivo e duradouro.</p>
+    <button class="cta" id="nova" type="button">Realizar nova doação</button>
+  </div>
+
+  <p class="lead">Todos os recursos auferidos com as doações serão aplicados na Comunidade Católica Pantokrator.</p>
+</main>
+<script src="sou-missionario.js"></script>
+</body>
+</html>
